@@ -1,0 +1,7 @@
+_tmp
+_site
+.sass-cache
+*.swp
+_stash
+.project
+*.bak

@@ -1,0 +1,40 @@
+title: Arquillian
+description: A container-oriented testing framework for writing real integration tests.
+#gem_version: 0.2.7
+jira_key: ARQ
+github_organization: arquillian
+source_repo: http://github.com/arquillian
+issue_tracker: https://issues.jboss.org/browse/ARQ
+api_docs: http://docs.jboss.org/arquillian/api/latest
+spi_docs: http://docs.jboss.org/arquillian/spi/latest
+ref_guide: https://docs.jboss.org/author/display/ARQ/Reference+Guide
+project_space: http://community.jboss.org/en/arquillian
+faqs: http://community.jboss.org/en/arquillian/faq
+migration_guides: http://community.jboss.org/wiki/ArquillianMigrationGuides
+user_forum: http://community.jboss.org/en/arquillian?view=discussions
+dev_forum: http://community.jboss.org/en/arquillian/dev?view=discussions
+irc_transcripts: http://transcripts.jboss.org/channel/irc.freenode.org/%23jbosstesting/index.html
+featured_user: kpiwko
+featured_bio: |
+  Karel Piwko is a member of the Arquillian and ShrinkWrap core teams. He works at Red Hat as a QA Associate in the JBoss QE group.
+
+  He's recognized here for his contribution of "Arquillian Drone":/guides/functional_testing_using_drone, an extension that simplifies the task of writing functional tests by managing the lifecycle of browser automation tools such as Selenium, Ajocodo and WebDriver. Karel is now the lead the Drone extension.
+
+  In addition to Drone, Karel helps design and implement ShrinkWrap Resolvers, an API that plays a key role in Drone-based functional tests.
+disqus_generate_id: true
+profiles:
+  debug:
+    show_debug: true
+  development:
+  sandbox:
+    base_url: http://sandbox.arquillian.org:4242
+    disqus: arquillian-sandbox
+    disqus_developer: true
+  staging:
+    base_url: http://arqpreview-alrubinger.rhcloud.com
+    google_analytics: UA-18727998-4
+    disqus: arquillian-staging
+  production:
+    base_url: http://arquillian.org
+    google_analytics: UA-18727998-3
+    disqus: arquillian

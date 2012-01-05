@@ -1,0 +1,135 @@
+---
+layout: guide-base
+---
+- page.javascripts = [ '/javascripts/jquery-scroll.js', 'http://apis.google.com/js/plusone.js' ]
+- groups = [['beg', 'First Steps'], ['int', 'More Coverage'], ['adv', 'Enhance']]
+#content
+  %h2= page.title
+  - if page.authors
+    .authors<
+      %strong Authors:
+      = ' '.concat(page.authors.join(', '))
+      - if page.guide.group
+        %strong{:style=>'padding-left: 10px;'} Level:
+        = ' '.concat(groups[page.guide.group - 1][1])
+      %strong{:style=>'padding-left: 10px;'} Last Update:
+      = ' '.concat(page.changes[0].date.strftime('%b %d, %Y'))
+  ~ content
+  :textile
+    h3. Share the Knowledge
+
+    Find this guide useful?
+
+    p(post_to_twitter). ["!/images/post_to_twitter.png!":http://twitter.com/home/?status=#{URI.escape("Just read the #Arquillian #{page.title} guide and got a #greenbar! Get yours. #{site.base_url}#{page.output_path.gsub(/\/index\.html$/, '')}")}]
+
+    <div class="g-plusone" data-size="tall"></div>
+
+    There's a lot more about Arquillian to cover. If you're ready to learn more, check out the "other available guides":/guides.
+
+    h4. Feedback
+
+    Find a bug in the guide? Something missing? You can fix it by "forking this website":http://github.com/arquillian/arquillian.github.com, making the correction and "sending a pull request":http://help.github.com/send-pull-requests. If you're just plain stuck, feel free to ask a question in the "user discussion forum":#{site.user_forum}.
+
+  - if page.changes
+    %h4 Changelog
+    %ul
+      - for change in page.changes
+        %li
+          #{change.date.strftime('%b %d, %Y')}:
+          &= change.message
+          by #{change.author} 
+- if page.guide
+  #sidebar
+    #toc
+      %h3.chapter_header Chapters
+      %ol.chapters
+        - for chapter in page.guide.chapters
+          %li
+            %a{ :id=>"#{chapter.link_id}_link", :href=>"##{chapter.link_id}" }
+              =chapter.text
+  :javascript
+    $(window).load(function() {
+      var $toc = $('#toc');
+      $toc.localScroll({hash: true});
+      var sections = [ #{page.guide.chapters.map{|x| '\'' + x.link_id + '\''}.join(',')} ];
+      var currentSection = false;
+      var sectionOffsets = {};
+      $.each(sections, function(idx, section) {
+        sectionOffsets[section] = $('#' + section).position().top;
+      });
+      
+      var tocMetrics = {
+        top: $toc.position().top,
+        height: $toc.outerHeight()
+      };
+      var bottomBumper = $('#guide .two-col').outerHeight() + $('#guide .two-col').offset().top - 25;
+      var linkColor = $('#toc a:first').css('color');
+
+      var updateToc = function() {
+        var scrollY = $(window).scrollTop();
+        positionToc(scrollY);
+        highlightSectionInToc(scrollY);
+      }
+
+      var positionToc = function(scrollY) {
+        // if scrolled past toc, move it down
+        if (scrollY > tocMetrics.top) {
+          if ($toc.css('position') != 'fixed') {
+            $toc.css('position', 'fixed');
+          }
+          var remainingHeight = bottomBumper - scrollY;
+          // keep toc from overrunning bottom of content
+          if (remainingHeight < tocMetrics.height) {
+            $toc.css('top', 0 - (tocMetrics.height - remainingHeight));
+          }
+          else {
+            $toc.css('top', 5);
+          }
+        }
+        else {
+          if ($toc.css('position') != 'static') {
+            $toc.css({position: 'static', top: 0});
+          }
+        }
+      };
+
+      var highlightSectionInToc = function(scrollY) {
+        var numSections = sections.length;
+        if (numSections == 0) {
+          return;
+        }
+
+        // if scrolled above first section, unhighlight any
+        if (scrollY < sectionOffsets[sections[0]]) {
+          toggleSelection(false);
+        }
+        // if last section is in view, highlight it
+        else if (scrollY + $(window).height() > sectionOffsets[sections[numSections - 1]]) {
+          var section = sections[numSections - 1];
+          toggleSelection(section);
+        }
+        // highlight visible section
+        else {
+          $.each(sections, function(idx, section) {
+            if (scrollY > sectionOffsets[section] && (idx == numSections - 1 || scrollY < sectionOffsets[sections[idx + 1]])) {
+              toggleSelection(section);
+            }
+          });
+        }
+      }
+
+      var toggleSelection = function(section) {
+        if (!section || section != currentSection) {
+          if (currentSection) {
+            $('#' + currentSection + '_link').css({fontWeight: 'normal', color: linkColor});
+          }
+          currentSection = section;
+          if (section) {
+            $('#' + section + '_link').css({fontWeight: 'bold', color: '#333333'});
+          }
+        }
+      }
+
+      updateToc();
+      $(window).scroll(updateToc);
+    });

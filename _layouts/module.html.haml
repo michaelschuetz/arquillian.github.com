@@ -1,0 +1,34 @@
+---
+layout: default
+---
+#content
+  %p
+    %strong Git Repository:
+    %a{:href=>site.source_repo} arquillian
+    %span /
+    %a{:href=>page.github_org_repo['html_url']}= page.github_org_repo['name'] 
+  %h3 Description
+  %p= page.github_org_repo['description']
+  ~ content
+  %h3 Contributors
+  %ul.contributors
+    - for contributor in page.github_repo_contributors.sort{|a, b| b['contributions']<=>a['contributions']}.map{|e| e['contributor']} 
+      %li
+        .photo
+          %img{:src=>contributor.avatar_url, :title=>contributor.name}
+          %ul
+            %li
+              - if contributor.blog
+                %a{:href=>contributor.blog} Blog
+              - else
+                %span Blog
+            %li
+              - if contributor.twitter?
+                %a{:href=>contributor.twitter.url} Twitter
+              - else
+                %span Twitter
+            %li
+              %a{:href=>contributor.github.url} GitHub
+        %h3= contributor.name
+        %strong= contributor.company
+        %em= contributor.location

@@ -1,0 +1,27 @@
+---
+layout: default
+title: Contributors
+---
+#content
+  %ul.contributors
+    - for contributor in site.contributors.values.sort{|a, b| b.github.contributions <=> a.github.contributions } 
+      %li
+        .photo
+          %img{:src=>contributor.avatar_url, :title=>contributor.name}
+          %ul
+            %li
+              - if contributor.blog
+                %a{:href=>contributor.blog} Blog
+              - else
+                %span Blog
+            %li
+              - if contributor.twitter?
+                %a{:href=>contributor.twitter.url} Twitter
+              - else
+                %span Twitter
+            %li
+              %a{:href=>contributor.github.url} GitHub
+        %h3= contributor.name
+        %strong= contributor.company
+        %em= contributor.location
+  %p.clear <strong>Is your information incomplete? Is your profile picture missing?</strong> Make sure you link your gravatar to github, fill in your name, location and bio and link your gravatar to your twitter account.

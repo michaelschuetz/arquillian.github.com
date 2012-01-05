@@ -1,0 +1,48 @@
+---
+layout: invasion
+title: Invasion Team
+---
+%h2 Simplified integration testing forks from here!
+
+%p Meet the team leading the invasion and join our innovation effort to make integration testing for Java middleware simple and powerful! We believe innovation spawns from the forks and spreads throughout the community. The project also benefits tremendously from participation by the JBoss QE team.
+
+%ul.team
+  - for username in ['aslakknutsen', 'alrubinger', 'kpiwko', 'mojavelinux', 'arquillian', 'pmuir']
+    - if username != 'arquillian'
+      - identity = site.identity(username)
+      %li
+        %a{:href=>identity.jboss.url}<
+          %img{:src=>"#{identity.avatar_url}?s=60", :width=>60, :height=>60, :alt=>identity.name}
+        %h3= identity.name
+        %strong= identity.role
+        %em= identity.location
+    - else
+      %li
+        %a{:href=>'http://github.com/arquillian'}
+          %img{:src=>'http://gravatar.com/avatar/9be5bfc3104c3702712413ff986fe45b?s=60', :width=>60, :height=>60, :alt=>'Ike'}
+        %h3 Ike
+        %strong Mascot, Protector
+        %em Above the clouds
+  %li
+    %a{:href=>'/community/nobles'}
+      %img{:src=>'/images/arquillian_crown_icon_glossy_256.png', :width=>60, :height=>60, :alt=>'Nobles'}
+    %h3 Nobles
+    %strong Key Contributors
+    %em Worldwide
+  %li
+    %a{:href=>'/community/contributors'}
+      %img{:src=>'/images/jbosscommunity_logo_60px.png', :width=>60, :height=>60, :alt=>'JBoss Community'}
+    %h3 Community
+    %strong Contributors
+    %em Worldwide
+  %li
+    %img{:src=>'/images/jboss_logo_60px.png', :width=>60, :height=>60, :alt=>'QE Team'}
+    %h3 QE Team
+    %strong Quality Assurance
+    %em Brno, Czech Republic
+
+%p.clear.charge
+  %strong<
+    Every contribution matters.
+    %br
+    Thanks for being part of the team!

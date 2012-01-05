@@ -1,0 +1,46 @@
+---
+layout: guide-base
+title: Guides
+---
+- groups = ['First Steps', 'More Coverage', 'Enhance']
+#content
+  - groups.each_with_index do |group, index|
+    %h3.group= group
+    %dl
+      - for guide in site.guides.select{|x| x.group == index + 1}.sort{|a, b| a.order <=> b.order}
+        %dt<
+          %a{:href=>guide.output_path}= guide.title
+        %dd= guide.summary
+  %h3.group Reference
+  %dl
+    %dt<
+      %a{:href=>site.ref_guide} Reference Manual
+    %dd Reference information for the Arquillian project.
+    %dt<
+      %a{:href=>site.api_docs} API Documentation
+    %dd Documentation for Java APIs (for using Arquillian).
+    %dt<
+      %a{:href=>site.spi_docs} SPI Documentation
+    %dd Documentation for Java SPIs (for extending Arquillian).
+    %dt<
+      %a{:href=>site.faqs} FAQs
+    %dd Knowledge base of frequently asked questions and helpful tips.
+    %dt<
+      %a{:href=>site.migration_guides} Migration Guides
+    %dd Instructions for migrating between versions of Arquillian.
+#sidebar
+  %h3 Icon Legend
+  %ul.legend
+    %li.edit This icon identifies source files that you'll create or modify.
+    %li.command This icon identifies a command you'll type in a console window.
+    %li.info An info block provides helpful hints, fun facts and FAQs.
+    %li.warning A warning block helps prevent you from getting tripped up.
+    %li.important An important block highlights a critical point to keep in mind.
+  %h3 Conventions
+  %dl
+    %dt // clip
+    %dd Java code that is hidden
+    %dt &lt;!-- clip --&gt;
+    %dd XML code that is hidden
+    %dt $
+    %dd Indicates a command prompt

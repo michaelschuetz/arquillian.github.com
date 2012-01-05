@@ -1,0 +1,21 @@
+---
+layout: blog
+title: Arquillian wins a Duke's Choice Award!
+author: aslakknutsen
+tags: [ awards, javaone, announcement, photos ]
+---
+Mark the date, October 2, 2011: Arquillian wins a "Duke's Choice Award":http://www.java.com/en/dukeschoice for Innovative Integration Testing at "JavaOne 2011":http://www.oracle.com/javaone!
+
+!/images/2011-dukes-choice-award-ike.png!
+
+Is there a better way to start of a though week then to get a solid acknowledgement for the hardwork that you have already put in? I can't think of any...
+
+!/images/blog/dukes_choice_award_2011_team.jpg!
+
+_Members of the Arquillian team receiving the Duke's Choice Award (Andrew Lee Rubinger, Dan Allen and Aslak Knutsen)._
+
+We accept this award as an ongoing challenge to innovate. We'll continue our mission to explore strange new testing gaps, seek out new integration points and boldly go where no integration testing software has gone before. This award goes out to the entire Arquillian community: coders, bloggers and evangelists. Excellent work! 
+
+We'd also like to congratulate the other Duke's Choice Award winners as well: dooApp, Inductive Automation, jHome, JFrog, JRebel, LMAX, Rockwell Automation and one of our own, Netty. Great work! Duke certainly made some great choices this year.
+
+!/images/blog/dukes_choice_award_2011_group.jpg!
